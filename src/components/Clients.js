@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 const ShowProducts = () => {
   const url = 'http://127.0.0.1:8000/api/clients'
   const [products, setProducts] = useState([])
   const [editingProduct, setEditingProduct] = useState(null)
   const [updatedData, setUpdatedData] = useState({})
+  const { logout } = useAuth()
   const [newData, setNewData] = useState({
     name: '',
     phone: '',
@@ -19,6 +21,11 @@ const ShowProducts = () => {
   useEffect(() => {
     getProducts()
   }, [])
+
+  const exit = () => {
+    logout()
+    navigate('/')
+  }
 
   const getProducts = async () => {
     try {
@@ -131,6 +138,11 @@ const ShowProducts = () => {
           >
             {' '}
             <i className='fa-solid fa-car'></i> VEHICLES
+          </button>
+          &nbsp;
+          <button className='btn btn-danger' onClick={() => exit()}>
+            {' '}
+            <i class='fa-solid fa-xmark'></i> LOGOUT
           </button>
           &nbsp;
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+
 const ShowProducts = () => {
   const url = 'http://127.0.0.1:8000/api/models'
   const [products, setProducts] = useState([])
@@ -46,7 +47,7 @@ const ShowProducts = () => {
         <h2 className='main-title'>Premium Car Rental</h2>
         <div>
           <button
-            className='btn btn-danger'
+            className='btn btn-secondary'
             onClick={() => navigate('/client')}
           >
             <i class='fa-solid fa-user'></i> CLIENTS

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 const ShowVehicles = () => {
   const url = 'http://127.0.0.1:8000/api/vehicles'
   const [vehicles, setVehicles] = useState([])
   const [editingVehicle, setEditingVehicle] = useState(null)
   const [updatedData, setUpdatedData] = useState({})
+    const { logout } = useAuth()
   const [newData, setNewData] = useState({
     name: '',
     plate: '',
@@ -119,7 +121,7 @@ const ShowVehicles = () => {
           </button>
           &nbsp;
           <button
-            className='btn btn-danger'
+            className='btn btn-secondary'
             onClick={() => navigate('/client')}
           >
             <i className='fa-solid fa-user'></i> CLIENTS
@@ -130,6 +132,14 @@ const ShowVehicles = () => {
             onClick={() => navigate('/model')}
           >
             <i className='fa-solid fa-truck-pickup'></i> MODELS
+          </button>
+          &nbsp;
+          <button
+            className='btn btn-danger'
+            onClick={() => logout()}
+          >
+            {' '}
+            <i class="fa-solid fa-xmark"></i> LOGOUT
           </button>
           &nbsp;
         </div>
